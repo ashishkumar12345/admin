@@ -15,18 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('company_id')->nullable()->constrained('companies')->cascadeOnDelete();
+            $table->enum('role', ['SuperAdmin', 'Admin', 'Member'])->default('Member');
             $table->rememberToken();
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('users');
     }
 };
