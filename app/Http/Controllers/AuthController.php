@@ -44,8 +44,8 @@ class AuthController extends Controller {
 
     public function acceptInvitation(Request $request, $token) {
         $invitation = Invitation::where('token', $token)->where('accepted', false)->firstOrFail();
-        $request->validate([
-            'name' => 'required|string|max:255',
+       $request->validate([
+            'name' => 'required|string|max:255|regex:/^[A-Za-z ]+$/',
             'password' => 'required|min:8|confirmed',
         ]);
         User::create([

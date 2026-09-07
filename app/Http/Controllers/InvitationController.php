@@ -10,6 +10,7 @@ class InvitationController extends Controller {
     public function inviteUser(Request $request) {
         
         $validator = \Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'role' => 'required|in:Admin,Member',
         ]);
@@ -19,6 +20,7 @@ class InvitationController extends Controller {
 
         $token = Str::random(32);
         Invitation::create([
+            'name'  => $request->name,
             'email' => $request->email,
             'role' => $request->role,
             'company_id' => auth()->user()->company_id,

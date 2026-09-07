@@ -3,8 +3,6 @@
 @section('content')
 <div style="max-width: 400px; margin: auto;">
     <h3>Accept Invitation</h3>
-
-    <!-- Validation Errors Display Area -->
     @if ($errors->any())
         <div style="color: red; margin-bottom: 15px;">
             <ul>
@@ -20,7 +18,7 @@
         
         <div>
             <label>Name:</label><br>
-            <input type="text" name="name" value="{{ old('name') }}" required style="width: 100%;">
+            <input type="text" name="name" value="{{ $invitation->name}}" required style="width: 100%;" readonly>
         </div><br>
 
         <div>

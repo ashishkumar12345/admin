@@ -84,11 +84,16 @@
         <form action="{{ route('member.invite') }}" method="POST" novalidate>
             @csrf
             <div class="row g-3">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold text-secondary">Name</label>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Enter Name" class="form-control">
+                </div>
+            
+                <div class="col-md-4">
                     <label class="form-label fw-semibold text-secondary">Email Address</label>
                     <input type="email" name="email" value="{{ old('email') }}" placeholder="Enter Email" class="form-control">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label fw-semibold text-secondary">Role</label>
                     <select name="role" class="form-select">
                         <option value="Member" selected>Member</option>
@@ -169,6 +174,7 @@
                             <th>Role</th>
                             <th>Total Generated URLs</th>
                             <th>Total URLs Hits</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -187,6 +193,14 @@
                             </td>
                             <td><span class="badge bg-primary">{{ $member->short_urls_count }}</span></td>
                             <td><span class="badge bg-primary">{{ $member->short_urls_sum_clicks }}</span></td>
+                            <td>
+                                @if($company->users_count > 0)
+                                    <span style="color: green;">Active</span>
+                                @else
+                                    <span style="color: orange;">Pending Acceptance</span>
+                                @endif
+                            </td>
+
                         </tr>
                         @empty
                         <tr>

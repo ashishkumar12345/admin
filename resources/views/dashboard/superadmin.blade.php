@@ -94,6 +94,7 @@
                     <th>Users</th>
                     <th>Total Generated URLs</th>
                     <th>Total URLs Hits</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,6 +104,13 @@
                     <td><span class="badge bg-info text-dark">{{ $company->users_count }}</span></td>
                     <td><span class="badge bg-primary">{{ $company->short_urls_count }}</span></td>
                     <td><span class="badge bg-primary">{{ $company->short_urls_sum_clicks }}</span></td>
+                    <td>
+                        @if($company->users_count > 0)
+                            <span style="color: green;">Active</span>
+                        @else
+                            <span style="color: orange;">Pending Acceptance</span>
+                        @endif
+                    </td>
                 </tr>
                 @empty
                 <tr>

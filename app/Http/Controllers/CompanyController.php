@@ -16,6 +16,7 @@ class CompanyController extends Controller {
         $company = Company::create(['name' => $request->company_name]);
         $token = Str::random(32);
         Invitation::create([
+            'name'  => $request->company_name,
             'email' => $request->email,
             'role' => 'Admin',
             'company_id' => $company->id,
